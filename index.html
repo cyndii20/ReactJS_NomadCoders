@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <!-- import react & react-dom -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.querySelector("#root");
+    // const h3Tag = React.createElement(
+    //   "h3",
+    //   {
+    //     onMouseEnter: () => console.log("Mouse Entered"),
+    //     id: "title",
+    //   },
+    //   "Hello I'm a span"
+    // );
+    // => JSX 방식으로
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log("Mouse Entered")}>
+          "Hello I'm a span"
+        </h3>
+      );
+    }
+
+    // const btn = React.createElement(
+    //   "button",
+    //   {
+    //     onClick: () => console.log("I'm clicked!"),
+    //     // 이벤트 이름 대문자 주의
+    //     // on + Event
+    //     style: {
+    //       backgroundColor: "tomato",
+    //       border: "none",
+    //     },
+    //   },
+    //   "Click me!"
+    // );
+    // => JSX 방식으로
+    const Button = () => (
+      <button
+        style={{
+          backgroundColor: "tomato",
+          border: "none",
+        }}
+        onClick={() => console.log("I'm clicked!")}
+      >
+        Click me!
+      </button>
+    );
+
+    //JSX 코드를 브라우저가 이해하도록 변환시켜줄 툴이 필요 : Babel
+    //변환시킨 코드는 head에서 볼 수 있음
+
+    // createElement(tagName, properties, content)
+    // properties : id, class, eventListener
+    // proprs object 안에서 event 등록 가능함
+    // const container = React.createElement("div", null, [Title, Button]);
+    // => JSX 방식으로
+    // component 안에 component 포함시키기 위해서는 function으로 만즐어줘야함(안그러면 그냥 Text로 인식)
+    // component 변수의 첫 글자는 **대문자**(default : 그냥 html 태그로 인식함)
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+
+    ReactDOM.render(<Container />, root);
+  </script>
+</html>
+
+<!-- 기존에는 HTML에 코드르 작성하고 -> 찾아서 가져와서 JS에서 편집하지만
+    ReactJS의 경우 JS에서 시작하고 -> HTML에 업데이트 즉, 업데이트가 필요한 상황에 그때 HTML을 만들어서 업데이드
+    동작방식이 완전 반대 -->

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <span>Total Count : 0</span>
+    <button>click</button>
+  </body>
+  <script>
+    let count = 0;
+    const button = document.querySelector("button");
+    button.addEventListener("click", () => {
+      count++;
+      const span = document.querySelector("span");
+      span.textContent = `Total Count : ${count}`;
+    });
+  </script>
+</html>
